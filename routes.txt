@@ -1,0 +1,45 @@
+POST /waterjug
+
+request:
+{
+    "x_capacity": 2,
+    "y_capacity": 10,
+    "z_amount_wanted": 4
+}
+
+response:
+{
+    "code": 200,
+    "solution": [
+        {
+            "step": 1, 
+            "bucketX": 2, 
+            "bucketY": 0, 
+            "action": "Fill bucket X"
+        },
+        {
+            "step": 2, 
+            "bucketX": 0, 
+            "bucketY": 2, 
+            "action": "Transfer from bucket X to Y"
+        },
+        {
+            "step": 3, 
+            "bucketX": 2, 
+            "bucketY": 2, 
+            "action": "Fill bucket X"
+        },
+        {
+            "step": 4, 
+            "bucketX": 0, 
+            "bucketY": 4, 
+            "action": "Transfer from bucket X to Y", 
+            "status": "Solved"
+        }
+    ]
+}
+
+{
+    "code": 200,
+    "solution": "No solution possible"
+}
