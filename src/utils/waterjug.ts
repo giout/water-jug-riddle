@@ -11,7 +11,20 @@ axioms in the riddle:
 * if solution starts with the filling of x, x will never empty (same with y)
 * if solution starts with the filling of x, x content will always be transfered to y, and not viceversa (same with y) 
 */
-export const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
+
+export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
+    // if no solution is provided, it should return []
+    // validate: y >= z > x > 0 
+    if (x>=y || x>=z || z>y || x<0 || y<0 || z<0) {    
+        return [] 
+    }
+    const solutionX = solutionBucketX(x,y,z) // fill x first
+    const solutionY = solutionBucketY(x,y,z) // fill y first
+    // the solution that has less steps will be selected as the greatest solution and will be retrieved to the client
+    return solutionX.length<=solutionY.length ? solutionX : solutionY
+}
+
+const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
     const solution: Array<Step> = []
     let bucketX = 0
     let bucketY = 0
@@ -23,7 +36,7 @@ export const solutionBucketX = (x: number, y: number, z: number): Array<Step> =>
             return []
         }
         // if y is not full and x is empty, next step should be fill x  
-        if (bucketY<y && bucketX==0) {
+        else if (bucketY<y && bucketX==0) {
             step++
             bucketX = x
             solution.push({
@@ -34,7 +47,7 @@ export const solutionBucketX = (x: number, y: number, z: number): Array<Step> =>
             })
         }
         // if y is full and x is not empty, next step hould be empty y
-        if (bucketY==y && bucketX>0) {
+        else if (bucketY==y && bucketX>0) {
             step++
             bucketY = 0
             solution.push({
@@ -45,7 +58,7 @@ export const solutionBucketX = (x: number, y: number, z: number): Array<Step> =>
             })
         }
         // if y is not full and x is not empty, next step should be transfer x content to y
-        if (bucketY<y && bucketX>0) {
+        else if (bucketY<y && bucketX>0) {
             step++
             if ((bucketX + bucketY) > y){
                 bucketX = (bucketX+bucketY) - y
@@ -66,7 +79,7 @@ export const solutionBucketX = (x: number, y: number, z: number): Array<Step> =>
     return solution
 }
 
-export const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
+const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
     const solution: Array<Step> = []
     let bucketX = 0
     let bucketY = 0
@@ -78,7 +91,7 @@ export const solutionBucketY = (x: number, y: number, z: number): Array<Step> =>
             return []
         }
         // if x is not full and y is empty, next step should be fill y  
-        if (bucketX<x && bucketY==0) {
+        else if (bucketX<x && bucketY==0) {
             step++
             bucketY = y
             solution.push({
@@ -89,7 +102,7 @@ export const solutionBucketY = (x: number, y: number, z: number): Array<Step> =>
             })
         }
         // if x is full and y is not empty, next step hould be empty x
-        if (bucketX==x && bucketY>0) {
+        else if (bucketX==x && bucketY>0) {
             step++
             bucketX = 0
             solution.push({
@@ -100,7 +113,7 @@ export const solutionBucketY = (x: number, y: number, z: number): Array<Step> =>
             })
         }
         // if y is not full and x is not empty, next step should be transfer x content to y
-        if (bucketX<x && bucketY>0) {
+        else if (bucketX<x && bucketY>0) {
             step++
             if ((bucketX + bucketY) > x){
                 bucketY = (bucketX+bucketY) - x
