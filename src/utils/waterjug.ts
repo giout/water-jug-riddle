@@ -16,12 +16,20 @@ export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
     // if no solution is provided, it should return []
     // validate: y >= z > x > 0 
     if (x>=y || x>=z || z>y || x<0 || y<0 || z<0) {    
-        return [] 
+        return []
     }
     const solutionX = solutionBucketX(x,y,z) // fill bucket x first
+
+    // if solutionX fails, process ends
+    if (solutionX.length == 0){
+        return []
+    }
+
     const solutionY = solutionBucketY(x,y,z) // fill bucket y first
     // the solution that has less steps will be selected as the greatest solution and will be retrieved to the client
-    return solutionX.length<=solutionY.length ? solutionX : solutionY
+    let solution = solutionX.length<=solutionY.length ? solutionX : solutionY
+    solution[solution.length-1].status = 'Solved'
+    return solution
 }
 
 const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
