@@ -15,7 +15,7 @@ axioms in the riddle:
 export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
     // if no solution is provided, it should return []
     // validate: y >= z > x > 0 
-    if (x>=y || x>=z || z>y || x<0 || y<0 || z<0) {    
+    if (x<0 || y<0 || z<0) {    
         return []
     }
     const solutionX = solutionBucketX(x,y,z) // fill bucket x first
@@ -38,7 +38,8 @@ const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
     let bucketY = 0
     let step = 0
 
-    while(bucketY != z) {
+    // while the biggest bucket does not have the amount wanted...
+    while((bucketY!=z && y>x) || (bucketX!=z && x>y)) {
         // if bucket y is full and bucket x is empty there is no possible solution, it becomes an endless cycle
         if (bucketY==y && bucketX==0) {
             return []
@@ -93,7 +94,8 @@ const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
     let bucketY = 0
     let step = 0
 
-    while(bucketY != z) {
+    // while the biggest bucket does not have the amount wanted...
+    while((bucketY!=z && y>x) || (bucketX!=z && x>y)) {
         // if bucket x is full and bucket y is empty, there is no possible solution, it becomes an endless cycle
         if (bucketX==x && bucketY==0) {
             return []

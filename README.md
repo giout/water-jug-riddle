@@ -98,8 +98,7 @@ Let's observe the next scenarios:
 Previous examples present these common patterns:
 
 - If any of the 3 values is negative, there is no possible solution.
-- If x is equal or bigger than y or z, there is no possible solution.
-- If z is bigger than y, there is no possible solution.
+- One of these conditions must be true for a solution to be possible: x >= z > y or y >= z > x.
 - There are 2 possible solutions at most:
     - Start filling x bucket.
     - Start filling y bucket.
@@ -162,7 +161,7 @@ If we watch all the examples as a whole we can also observe that:
 - There are two possible solutions or zero solutions, there is no middle ground. 
 
 ### Steps to find a solution
-Following the axioms discovered through the observation of success and failure scenarios, a series of steps were built to find the 2 possible solutions.<br>We must validate the input and then start to execute the solutions. In both processes, the first step is to start a loop that ends if bucket y has the amount wanted (z). Inside the loop, the next actions will be executed in order:
+Following the axioms discovered through the observation of success and failure scenarios, a series of steps were built to find the 2 possible solutions.<br>We must validate the input and then start to execute the solutions. In both processes, the first step is to start a loop that ends if the biggest bucket has the amount wanted (z). Inside the loop, the next actions will be executed in order:
 
 #### Solution 1: filling bucket x first
 - If bucket y is full and bucket x is empty:
@@ -199,7 +198,7 @@ Following the axioms discovered through the observation of success and failure s
 ### Choosing an efficient solution
 Once we have two solutions, each one stored in its corresponding data structure, we choose as the best solution the one that has fewer steps.
 ### Algorithm summary
-- Validate y >= z > x.
+- Validate x >= z > y or y >= z > x.
 - Execute and store [solution attempt 1](#solution-1-filling-bucket-x-first).
 - If solution attempt 1 fails, return no solution.
 - Execute and store [solution attempt 2](#solution-2-filling-bucket-y-first).

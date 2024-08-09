@@ -18,16 +18,7 @@ describe('Unit tests to verify the correctness of the algorithm', ()=> {
     test('x=2, y=6, z=5 should not return a solution', () => {
         expect(solveRiddle(2, 6, 5).length).toBe(0)
     })
-    test('If x >= y, it should not return a solution', () => {
-        expect(solveRiddle(7, 6, 5).length).toBe(0)
-    })
-    test('If x >= z, it should not return a solution', () => {
-        expect(solveRiddle(8, 10, 8).length).toBe(0)
-    })
-    test('If z>y, it should not return a solution', () => {
-        expect(solveRiddle(8, 10, 12).length).toBe(0)
-    })
-    test('If y>x and y=x, it should return a 1 step solution', () => {
+    test('If y>x and y=z, it should return a 1 step solution', () => {
         expect(solveRiddle(2, 10, 10).length).toBe(1)
     })
 })
