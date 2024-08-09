@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Water Jug API
+  description: |-
+    API that can compute an efficient solution to solve the water jug riddle taking any numeric values as input. This service computes the steps to measure exactly Z gallons using 2 jugs of capacities X and Y gallons.
+  version: 1.0.0
+tags:
+  - name: waterjug
+paths:
+  /waterjug:
+    post:
+      tags: 
+        - waterjug
+      summary: riddle solution
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                x_capacity:
+                  type: number
+                y_capacity:
+                  type: number
+                z_amount_wanted: 
+                  type: number
+        required: true
+      responses:
+        '200': 
+          description: retrieve a solution
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  solution:
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        step:
+                          type: number
+                        bucketX:
+                          type: number
+                        bucketY:
+                          type: number
+                        action:
+                          type: string
+                        status:
+                          type: string
+        '400':
+          description: no solution retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  solution:
+                    type: string
