@@ -6,10 +6,10 @@ axioms in the riddle:
 * if x is equal or bigger than y or z, there is no possible solution
 * if z is bigger than y, there is no possible solution
 * there are 2 possible solutions at most:
-    1. start filling x bucket
-    2. start filling y bucket
-* if solution starts with the filling of x, x will never empty (same with y)
-* if solution starts with the filling of x, x content will always be transfered to y, and not viceversa (same with y) 
+    1. start filling bucket x 
+    2. start filling bucket y 
+* if solution starts with the filling of bucket x, it will never empty (same with bucket y)
+* if solution starts with the filling of bucket x, its content will always be transfered to bucket y, and not viceversa (same with bucket y) 
 */
 
 export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
@@ -18,8 +18,8 @@ export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
     if (x>=y || x>=z || z>y || x<0 || y<0 || z<0) {    
         return [] 
     }
-    const solutionX = solutionBucketX(x,y,z) // fill x first
-    const solutionY = solutionBucketY(x,y,z) // fill y first
+    const solutionX = solutionBucketX(x,y,z) // fill bucket x first
+    const solutionY = solutionBucketY(x,y,z) // fill bucket y first
     // the solution that has less steps will be selected as the greatest solution and will be retrieved to the client
     return solutionX.length<=solutionY.length ? solutionX : solutionY
 }
@@ -31,11 +31,11 @@ const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
     let step = 0
 
     while(bucketY != z) {
-        // if y is full and x is empty there is no possible solution, it becomes an endless cycle
+        // if bucket y is full and bucket x is empty there is no possible solution, it becomes an endless cycle
         if (bucketY==y && bucketX==0) {
             return []
         }
-        // if y is not full and x is empty, next step should be fill x  
+        // if bucket y is not full and bucket x is empty, fill bucket x  
         else if (bucketY<y && bucketX==0) {
             step++
             bucketX = x
@@ -46,7 +46,7 @@ const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
                 action: `Fill bucket X`
             })
         }
-        // if y is full and x is not empty, next step hould be empty y
+        // if bucket y is full and bucket x is not empty, empty bucket y
         else if (bucketY==y && bucketX>0) {
             step++
             bucketY = 0
@@ -57,7 +57,7 @@ const solutionBucketX = (x: number, y: number, z: number): Array<Step> => {
                 action: `Empty bucket Y`
             })
         }
-        // if y is not full and x is not empty, next step should be transfer x content to y
+        // if bucket y is not full and bucket x is not empty, transfer bucket x content to bucket y
         else if (bucketY<y && bucketX>0) {
             step++
             if ((bucketX + bucketY) > y){
@@ -86,11 +86,11 @@ const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
     let step = 0
 
     while(bucketY != z) {
-        // if x is full and y is empty there is no possible solution, it becomes an endless cycle
+        // if bucket x is full and bucket y is empty, there is no possible solution, it becomes an endless cycle
         if (bucketX==x && bucketY==0) {
             return []
         }
-        // if x is not full and y is empty, next step should be fill y  
+        // if bucket x is not full and bucket y is empty, fill bucket y  
         else if (bucketX<x && bucketY==0) {
             step++
             bucketY = y
@@ -101,7 +101,7 @@ const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
                 action: `Fill bucket Y`
             })
         }
-        // if x is full and y is not empty, next step hould be empty x
+        // if bucket x is full and bucket y is not empty, empty bucket x
         else if (bucketX==x && bucketY>0) {
             step++
             bucketX = 0
@@ -112,7 +112,7 @@ const solutionBucketY = (x: number, y: number, z: number): Array<Step> => {
                 action: `Empty bucket X`
             })
         }
-        // if y is not full and x is not empty, next step should be transfer x content to y
+        // if bucket x is not full and bucket y is not empty, transfer bucket y content to bucket x
         else if (bucketX<x && bucketY>0) {
             step++
             if ((bucketX + bucketY) > x){
