@@ -20,10 +20,13 @@ paths:
               properties:
                 x_capacity:
                   type: number
+                  example: 2
                 y_capacity:
                   type: number
+                  example: 10
                 z_amount_wanted: 
                   type: number
+                  example: 4
         required: true
       responses:
         '200': 
@@ -42,14 +45,19 @@ paths:
                       properties:
                         step:
                           type: number
+                          example: 4
                         bucketX:
                           type: number
+                          example: 0
                         bucketY:
                           type: number
+                          example: 4
                         action:
                           type: string
+                          example: "Transfer from bucket X to Y"
                         status:
                           type: string
+                          example: "Solved"
         '400':
           description: no solution retrieved
           content:
@@ -59,5 +67,7 @@ paths:
                 properties:
                   code:
                     type: number
+                    example: 400
                   solution:
                     type: string
+                    example: "No solution"
