@@ -2,11 +2,12 @@
 # Water Jug API
 - [Tech stack](#tech-stack)
 - [Required installations](#required-installations)
-- [Install dependencies](#install-dependencies)
-- [Apply tests](#apply-tests)
-- [Generate Js code](#generate-js-code)
-- [Deploy in develop mode](#deploy-in-develop-mode)
-- [Deploy in production mode](#deploy-in-production-mode)
+- [Commands](#commands)
+    - [Install dependencies](#install-dependencies)
+    - [Apply tests](#apply-tests)
+    - [Generate Js code](#generate-js-code)
+    - [Deploy in develop mode](#deploy-in-develop-mode)
+    - [Deploy in production mode](#deploy-in-production-mode)
 - [API documentation](#api-documentation)
 - [What is the Water Jug riddle?](#what-is-the-water-jug-riddle)
 - [Explanation of the algorithm used to solve the riddle](#explanation-of-the-algorithm-used-to-solve-the-riddle)
@@ -20,30 +21,32 @@
 ## Required installations
 * [Node.js](https://nodejs.org/) - This project was developed using v20.10.0.
 
-## Install dependencies
+## Commands
+
+### Install dependencies
 It is mandatory to install dependencies before executing any other step.
 ```sh
 $ npm install
 ```
 
-## Apply tests
+### Apply tests
 Unit and integration tests ensure the API is working properly, it should be done before deploying the server.
 ```sh
 $ npm run test
 ```
 
-## Generate Js code
+### Generate Js code
 Transpile .ts files into .js files, store them at */dist* folder and run these .js files.
 ```sh
 $ npm run build
 ```
 
-## Deploy in develop mode
+### Deploy in develop mode
 ```sh
 $ npm run dev
 ```
 
-## Deploy in production mode
+### Deploy in production mode
 Deploy
 ```sh
 $ npm run start
