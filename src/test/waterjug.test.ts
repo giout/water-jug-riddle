@@ -59,4 +59,20 @@ describe('Integration tests to ensure the API handles requests and responses cor
         })
         expect(response.statusCode).toBe(400)
     })
+    test('If x, y or z are not positive, it should return 400 as http status code', async () => {
+        const response = await request(app).post('/waterjug').send({
+            x_capacity: -1,
+            y_capacity: 3,
+            z_amount_wanted:5
+        })
+        expect(response.statusCode).toBe(400)
+    })
+    test('If x, y or z are not integers, it should return 400 as http status code', async () => {
+        const response = await request(app).post('/waterjug').send({
+            x_capacity: 2.1,
+            y_capacity: 0.4,
+            z_amount_wanted:5
+        })
+        expect(response.statusCode).toBe(400)
+    })
 })

@@ -14,10 +14,6 @@ axioms in the riddle:
 
 export const solveRiddle = (x: number, y: number, z: number): Array<Step> => {
     // if no solution is provided, it should return []
-    // validate: y >= z > x > 0 
-    if (x<0 || y<0 || z<0) {    
-        return []
-    }
     const solutionX = solutionBucketX(x,y,z) // fill bucket x first
 
     // if solutionX fails, process ends
