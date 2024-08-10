@@ -4,6 +4,7 @@
 - [Required installations](#required-installations)
 - [Install dependencies](#install-dependencies)
 - [Apply tests](#apply-tests)
+- [Generate Js code](#generate-js-code)
 - [Deploy in develop mode](#deploy-in-develop-mode)
 - [Deploy in production mode](#deploy-in-production-mode)
 - [API documentation](#api-documentation)
@@ -17,7 +18,7 @@
 * [Express](https://expressjs.com)
 
 ## Required installations
-* [Node.js](https://nodejs.org/) - This project was developed using v20.10.0
+* [Node.js](https://nodejs.org/) - This project was developed using v20.10.0.
 
 ## Install dependencies
 It is mandatory to install dependencies before executing any other step.
@@ -26,9 +27,15 @@ $ npm install
 ```
 
 ## Apply tests
-Unit and integration tests ensure the API is working properly, it should be done before deploying the server
+Unit and integration tests ensure the API is working properly, it should be done before deploying the server.
 ```sh
 $ npm run test
+```
+
+## Generate Js code
+Transpile .ts files into .js files, store them at */dist* folder and run these .js files.
+```sh
+$ npm run build
 ```
 
 ## Deploy in develop mode
@@ -37,14 +44,11 @@ $ npm run dev
 ```
 
 ## Deploy in production mode
-Transpile .ts files into .js files and store them at */dist* folder
-```sh
-$ npm run build
-```
-Deploy 
+Deploy
 ```sh
 $ npm run start
 ```
+(This command will automatically transpile .ts files into .js files, store them at */dist* folder and run these .js files).
 
 ## API documentation
 **GET *<server_url>/docs*** provides a webpage with the API documentation (Endpoints described with their request body and response examples).
