@@ -54,7 +54,80 @@ $ npm run start
 (This command will automatically transpile .ts files into .js files, store them at */dist* folder and run these .js files).
 
 ## API documentation
-**GET *<server_url>/docs*** provides a webpage with the API documentation (Endpoints described with their request body and response examples).
+
+#### Solve riddle
+
+```http
+  POST /waterjug
+```
+
+**Request body example**
+
+```json
+{
+    "x_capacity": 2,
+    "y_capacity": 10,
+    "z_amount_wanted": 4
+}
+```
+
+**Response body examples**<br>
+http status: 200
+```json
+  {
+    "code": 200,
+    "message": "Solved",
+    "solution": [
+        {
+            "step": 1,
+            "bucketX": 2,
+            "bucketY": 0,
+            "action": "Fill bucket X"
+        },
+        {
+            "step": 2,
+            "bucketX": 0,
+            "bucketY": 2,
+            "action": "Transfer from bucket X to Y"
+        },
+        {
+            "step": 3,
+            "bucketX": 2,
+            "bucketY": 2,
+            "action": "Fill bucket X"
+        },
+        {
+            "step": 4,
+            "bucketX": 0,
+            "bucketY": 4,
+            "action": "Transfer from bucket X to Y",
+            "status": "Solved"
+        }
+    ]
+  }
+```
+
+http status: 400
+```json
+  {
+    "code": 400,
+    "message": "x must be positive. y must be an integer. ",
+  }
+```
+
+http status: 400
+```json
+  {
+    "code": 400,
+    "message": "No solution"
+  }
+```
+
+The next URL provides a static webpage with an API documentation just like the one above.
+
+```http
+GET /docs 
+```
 
 ## What is the Water Jug riddle?
 It is a classic logic puzzle, in which you have a x gallon jug and a y gallon jug, and as much water as you need. The riddle is: how do you measure out exactly z gallons using only these two jugs? 
