@@ -14,12 +14,11 @@ export const solveWaterJug = catchAsync(async (req: Request, res: Response, next
 
     // if x is bigger than y, z can't be bigger than x, and must be bigger than y (same with y)
     if (
-        !(x >= z && z > y) &&
-        !(y >= z && z > x)
+        !(x >= z && x > y) &&
+        !(y >= z && y > x)
     ) {
-        throw new CustomError('The biggest bucket must have a capacity equal or bigger than the amount wanted, and the smallest bucket must have a capacity smaller than the amount wanted', 200)
+        throw new CustomError('The biggest bucket must have a capacity equal or bigger than the amount wanted', 200)
     }   
-
 
     let solution = solveRiddle(x, y, z)
 

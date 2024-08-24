@@ -278,7 +278,7 @@ Following the axioms discovered through the observation of success and failure s
 ### Choosing an efficient solution
 Once we have two solutions, each one stored in its corresponding data structure, we choose as the best solution the one that has fewer steps.
 ### Algorithm summary
-- Validate x >= z > y or y >= z > x.
+- Validate (x >= z && x > y) or (y >= z && y > x).
 - Execute and store [solution attempt 1](#solution-1-filling-bucket-x-first).
 - If solution attempt 1 fails, return no solution.
 - Execute and store [solution attempt 2](#solution-2-filling-bucket-y-first).
